@@ -1,0 +1,26 @@
+package com.example.customer.Controller;
+
+import com.example.customer.Entities.CustomerRegistrationRequest;
+import com.example.customer.Service.CustomerService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/v1/customers")
+@Slf4j
+public class CustomerController {
+
+    @Autowired
+    private CustomerService customerService;
+
+    @PostMapping
+    public void registerCustomer(@RequestBody CustomerRegistrationRequest customerRegistrationRequest){
+        log.info("new Customer registration: {}", customerRegistrationRequest);
+        customerService.registerCustomer(customerRegistrationRequest);
+    }
+
+}
